@@ -1,0 +1,14 @@
+# Eclipse files
+.project
+.settings
+.classpath
+.cache
+.metadata
+.recommenders
+
+# Maven generated files
+target/classes/
+target/maven-archiver/
+target/maven-status/
+target/surefire-reports/
+target/test-classes/
