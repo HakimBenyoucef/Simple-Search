@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import com.simple.search.model.FilesExplorer;
+import com.simple.search.model.ModelImpl;
 import com.simple.search.model.Model;
 
 public class ControllerTest 
@@ -30,12 +30,12 @@ public class ControllerTest
 	@Test
 	public void singularityTest()
 	{
-		Model model = new FilesExplorer("path");
-		Controller controller1 = Controller.getInstance(model);
+		Model model = new ModelImpl("path");
+		Controller controller1 = ControllerImpl.getInstance(model);
 		
 		assertNotNull(controller1);
-		model = new FilesExplorer("another/path");
-		Controller controller2 = Controller.getInstance(model);
+		model = new ModelImpl("another/path");
+		Controller controller2 = ControllerImpl.getInstance(model);
 		
 		assertSame(controller1, controller2);
 	}

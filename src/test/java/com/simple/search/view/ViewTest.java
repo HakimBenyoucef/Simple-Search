@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
-import com.simple.search.view.PrintExecutor;
+import com.simple.search.view.ViewImpl;
 import com.simple.search.view.View;
 
 public class ViewTest {
@@ -34,28 +34,9 @@ public class ViewTest {
 		StringBuilder builder = new StringBuilder();
 		builder.append("*********** Welcom to the Simple Search Engine ***********");
 		
-		View view = new PrintExecutor();
+		View view = new ViewImpl();
 		assertNull(view.getBuilder());
 		view.printTitle();
-		
-		assertEquals(view.getBuilder().toString(), builder.toString());
-	}
-	
-	@Test
-	public void printUsageTest()
-	{
-		StringBuilder builder = new StringBuilder();
-		builder.append("\n");
-		builder.append("*******************************************");
-		builder.append("\n");
-		builder.append("Usage: java -jar <jarFile> Searcher <path>");
-		builder.append("\n");
-		builder.append("*******************************************");
-		builder.append("\n");
-		
-		View view = new PrintExecutor();
-		assertNull(view.getBuilder());
-		view.printUsage();
 		
 		assertEquals(view.getBuilder().toString(), builder.toString());
 	}
@@ -66,7 +47,7 @@ public class ViewTest {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Exit...");
 		
-		View view = new PrintExecutor();
+		View view = new ViewImpl();
 		assertNull(view.getBuilder());
 		view.printExit();
 		
@@ -80,7 +61,7 @@ public class ViewTest {
 		StringBuilder builder = new StringBuilder();
 		builder.append(message);
 		
-		View view = new PrintExecutor();
+		View view = new ViewImpl();
 		assertNull(view.getBuilder());
 		view.printMessage(message);
 		

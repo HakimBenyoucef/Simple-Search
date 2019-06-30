@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 import com.simple.search.exception.SimpleSearchException;
 
-public class FilesExplorer extends Observable implements Model
+public class ModelImpl extends Observable implements Model
 {
 	private static final String NON_ALPHABETIC_CHARS_REGEX = "[^a-zA-Z0-9]";
 	public static final String EXIT_COMMAND = ":quit";
@@ -31,7 +31,7 @@ public class FilesExplorer extends Observable implements Model
 	
 	private Map<String, Integer> scoreMap;
 	
-	public FilesExplorer(String directoryPath)
+	public ModelImpl(String directoryPath)
 	{
 		this.directoryPath = Paths.get(directoryPath);
 	}
@@ -183,11 +183,11 @@ public class FilesExplorer extends Observable implements Model
 			scoreMap.entrySet().stream()
 					.limit(TOP)		
 					.forEachOrdered(entry -> {
-						builder.append("\n");
 						builder.append(entry.getKey());
 						builder.append(":");
 						builder.append(entry.getValue());
 						builder.append("%%");
+						builder.append("\n");
 					});
 
 			setChanged();

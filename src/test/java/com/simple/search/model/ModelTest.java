@@ -44,7 +44,7 @@ public class ModelTest
 	@Before
 	public void init() throws IOException
 	{
-		model = new FilesExplorer(TEST_DIRECTORY_PATH);
+		model = new ModelImpl(TEST_DIRECTORY_PATH);
 		model.init();
 	}
 	
@@ -55,7 +55,7 @@ public class ModelTest
 		expectedEx.expect(IOException.class);
 	    expectedEx.expectMessage("Directory not found '"
         		+wrongPath+"'");
-		model = new FilesExplorer(wrongPath);
+		model = new ModelImpl(wrongPath);
 		model.init();
 	}
 	
@@ -66,7 +66,7 @@ public class ModelTest
 		String wrongPath = TEST_DIRECTORY_PATH+"file1.txt";
 		expectedEx.expect(NotDirectoryException.class);
 	    expectedEx.expectMessage("'"+wrongPath+ "' is not a directory");
-		model = new FilesExplorer(wrongPath);
+		model = new ModelImpl(wrongPath);
 		model.init();
 	}
 	 
@@ -83,7 +83,7 @@ public class ModelTest
 		expectedEx.expect(SimpleSearchException.class);
 	    expectedEx.expectMessage("Command exit pressed...");
 		
-		model.processCommand(FilesExplorer.EXIT_COMMAND);
+		model.processCommand(ModelImpl.EXIT_COMMAND);
 	}
 
 	@Test
