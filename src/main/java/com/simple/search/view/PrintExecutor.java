@@ -1,36 +1,26 @@
 package com.simple.search.view;
 
-import java.io.Console;
 import java.util.Observable;
 
-public class PrintExecutor implements View
+public class PrintExecutor extends Observable implements View
 {
-	private Console console =  System.console();
+	private StringBuilder builder;
 	
-	
-	@Override
-	public String prompt() {
-		String search = "search> ";
-		return console.readLine(search);
-    }
 	
 	@Override
 	public void printTitle() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("\n");
+		builder = new StringBuilder();
 		builder.append("*********** Welcom to the Simple Search Engine ***********");
-		builder.append("\n");
-		builder.append("\n");
-		builder.append("Please type the word(s) that you're looking for");
-		builder.append("\n"); 
-		console.printf(builder.toString());
+		
+		setChanged();
+        notifyObservers(builder.toString());
 	}
 	
 	
 	@Override
 	public void printUsage()
 	{
-		StringBuilder builder = new StringBuilder();
+		builder = new StringBuilder();
 		builder.append("\n");
 		builder.append("*******************************************");
 		builder.append("\n");
@@ -38,16 +28,33 @@ public class PrintExecutor implements View
 		builder.append("\n");
 		builder.append("*******************************************");
 		builder.append("\n");
-		console.printf(builder.toString());
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		StringBuilder builder = new StringBuilder();
-		builder.append(arg.toString());
-		builder.append("\n");
-		console.printf(builder.toString());
 		
+		setChanged();
+        notifyObservers(builder.toString());
+	}
+	
+	@Override
+	public void printExit() {
+		builder = new StringBuilder();
+		builder.append("Exit...");
+		
+        setChanged();
+        notifyObservers(builder.toString());
+	}
+	
+	@Override
+	public void printMessage(String message)
+	{
+		builder = new StringBuilder();
+		builder.append(message);
+		
+		setChanged();
+        notifyObservers(builder.toString());
+	}
+	
+	@Override
+	public StringBuilder getBuilder() {
+		return this.builder;
 	}
 
 
